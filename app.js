@@ -1,85 +1,90 @@
-// import functions and grab DOM elements
+// import functions
+
+//Dom elements
 const button1 = document.getElementById('button1');
 const button2 = document.getElementById('button2');
 const button3 = document.getElementById('button3');
+
 const img1 = document.getElementById('cup-img1');
 const img2 = document.getElementById('cup-img2');
 const img3 = document.getElementById('cup-img3');
+
 const winsEl = document.getElementById('wins');
-const lossesEl = document.getElementById('losses');
+const lossesEl = document.getElementById("losses");
 const totalEL = document.getElementById('total');
+const winningCupImgId = document.getElementById('winningCupImgId');
+
+
 // let state
 let wins = 0;
 let total = 0;
+let losses = 0;
+
+
+const cupImgIds = [
+  'cup-img1',
+  'cup-img2',
+  'cup-img3'
+];
+
+
 // set event listeners 
+//button 1 event listener
 button1.addEventListener('click', () => {
   
-  resetImages();
-  total++;
-
-  const randomCupNumber = Math.floor(Math.random() *3);
-  if (randomCupNumber === 0){
-    wins++;
-    img1.src = './assets/correct-cup.png';
-    displayWinsLosssesAndTotal();
-  }
-  else if (randomCupNumber === 1){
-    img2.src = './assets/correct-cup.png';
-  }
-  else{
-    img3.src = './assets/correct-cup.png';
-  }
+  handleGuess('cup-img1');
   
+ 
   })
-  
+ 
+  //button 2 event listener
   button2.addEventListener('click', () => {
+
+    handleGuess('cup-img2');
+  
+    
+    //button 3 event listner 
+    button3.addEventListener('click', () => {
+      total++;
+     
+      handleGuess('cup-img3');
+      
+
+    })
+  })
+    
+
+console.log();
+
+  function handleGuess(){
     resetImages();
     total++;
-  
-    const randomCupNumber = Math.floor(Math.random() *3);
-    if (randomCupNumber === 1){
-      wins++;
-      img2.src = './assets/correct-cup.png';
-      displayWinsLosssesAndTotal();
-    }
-    else if (randomCupNumber === 0){
-      img1.src = './assets/correct-cup.png';
-    }
-    else{
-      img3.src = './assets/correct-cup.png';
-    }
+    const randomCupNumber = Math.floor(Math.random () *3);
 
-    button3.addEventListener('click', () => {
-      resetImages();
-      total++;
+    const winningCupImgId =cupImgIds[randomCupNumber];
+
+    const winningImgEl= document.getElementById(winningCupImgId);
+
+  if (winningCupImgId === 'cup-img1'){
+    wins++;
+    winningImgEl.src = './assets/correct-cup.png';
+  }
+  if (winningCupImgId === 'cup-img2'){
     
-      const randomCupNumber = Math.floor(Math.random() *3);
-      if (randomCupNumber === 2){
-        wins++;
-        img3.src = './assets/correct-cup.png';
-        displayWinsLosssesAndTotal();
-      }
-      else if (randomCupNumber === 0){
-        img1.src = './assets/correct-cup.png';
-      }
-      else{
-        img2.src = './assets/correct-cup.png';
-      }
-
+    winningImgEl.src = './assets/correct-cup.png';
+  }
+  if (winningCupImgId === 'cup-img3'){
+    winningImgEl.src = './assets/correct-cup.png';
+  }
  
-    })
-  // get user input
-  // use user input to update state 
-  function displayWinsLosssesAndTotal() {
+  console.log(winningCupImgId);
+    totalEL.textContent = total;
     winsEl.textContent = wins;
     lossesEl.textContent = total - wins;
-    totalEL.textContent = total;
+    
   }
-
   function resetImages() {
     img1.src = './assets/cup.png';
     img2.src = './assets/cup.png';
     img3.src = './assets/cup.png';
-  }})
-
-  // update DOM to reflect the 
+  }
