@@ -31,6 +31,7 @@ const cupImgIds = [
 // set event listeners 
 //button 1 event listener
 button1.addEventListener('click', () => {
+  
   handleGuess('cup-img1');
   
   })

@@ -31,7 +31,7 @@ export function handleGuess(){
     displayWinsLosses();
     getRandomItem();
     total++;
-    console.log();
+    
    // let correctSpot = getRandomItem[cupImgIds];
     //const randomCupNumber = Math.floor(Math.random () *3);
     
@@ -39,8 +39,9 @@ export function handleGuess(){
     //const winningImgEl= document.getElementById(winningCupImgId);
 
     //console.log(randomCupNumber,winningCupImgId);
-    if (  cupImgIds === winningCupImgId){
+    if (  cupImgIds=== winningCupImgId){
       wins++;
+      console.log(userGuess)
       
         if (winningCupImgId === 'cup-img1'){
           winningImgEl.src = './assets/correct-cup.png';
